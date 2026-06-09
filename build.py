@@ -53,5 +53,10 @@ df.to_csv("movies.csv", index=False)
 tfidf = TfidfVectorizer(stop_words="english")
 matrix = tfidf.fit_transform(df["soup"])
 sim = cosine_similarity(matrix)
-pickle.dump((df, sim), open("recommender_model.pkl", "wb"))
+indices = pd.Series(df.index, index=df["title"]).drop_duplicates()
+pickle.dump({
+    "df": df,
+    "cosine_sim": sim,
+    "indices": indices
+}, open("recommender_model.pkl", "wb"))
 print(f"✅ Built model with {len(df)} movies")
