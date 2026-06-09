@@ -9,9 +9,10 @@ def fetch_movies(category, pages=5):
     movies = []
     for page in range(1, pages + 1):
         r = requests.get(f"{BASE_URL}/movie/{category}?api_key={API_KEY}&page={page}")
-        for m in r.json().get("results", []):
-            m["category"] = category  # tag each movie with its category
-        movies.extend(r.json().get("results", []))
+        results = r.json().get("results", [])
+        for m in results:
+            m["category"] = category
+        movies.extend(results)
     return movies
 
 all_movies = (
