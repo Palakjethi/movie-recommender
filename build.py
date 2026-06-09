@@ -9,6 +9,8 @@ def fetch_movies(category, pages=5):
     movies = []
     for page in range(1, pages + 1):
         r = requests.get(f"{BASE_URL}/movie/{category}?api_key={API_KEY}&page={page}")
+        for m in r.json().get("results", []):
+            m["category"] = category  # tag each movie with its category
         movies.extend(r.json().get("results", []))
     return movies
 
@@ -37,12 +39,24 @@ rows = []
 for m in unique:
     try:
         genres, cast, director, keywords = get_details(m["id"])
+        poster_path = m.get("poster_path", "")
+        poster_url = f"https://image.tmdb.org/t/p/w500{poster_path}" if poster_path else ""
+        release_date = m.get("release_date", "")
+        year = release_date[:4] if release_date else ""
         rows.append({
-            "id": m["id"], "title": m["title"],
-            "poster_path": m.get("poster_path", ""),
+            "id": m["id"],
+            "title": m["title"],
+            "poster_url": poster_url,
             "overview": m.get("overview", ""),
             "vote_average": m.get("vote_average", 0),
-            "soup": f"{genres} {cast} {director} {keywords}"
+            "vote_count": m.get("vote_count", 0),
+            "release_date": release_date,
+            "year": year,
+            "genres": genres,
+            "cast": cast,
+            "director": director,
+            "soup": f"{genres} {cast} {director} {keywords}",
+            "category": m.get("category", "")
         })
     except:
         continue
