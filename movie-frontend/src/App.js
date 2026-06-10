@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./App.css";
 
-const API = "http://127.0.0.1:8000";
+const API = "https://movie-recommender-9ykt.onrender.com";
 
 function MovieCard({ movie, onClick }) {
   return (
@@ -240,7 +240,7 @@ function App() {
         {activeNav === "home" && !searchResults.length && !recommendations.length && (
           <>
             <section className="movie-section">
-              <h2>🔥 Now Playing</h2>
+              <h2> Now Playing</h2>
               <div className="movie-row">
                 {popular.map((m) => (
                   <MovieCard
@@ -252,7 +252,7 @@ function App() {
               </div>
             </section>
             <section className="movie-section">
-              <h2>🚀 Upcoming Movies</h2>
+              <h2> Upcoming Movies</h2>
               <div className="movie-row">
                 {upcoming.map((m) => (
                   <MovieCard key={m.title} movie={m} />
