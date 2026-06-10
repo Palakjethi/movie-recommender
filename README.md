@@ -99,11 +99,13 @@ B.Tech CSE (AI & ML) — 3rd Year
 ---
 
 ## 📸 Screenshots
+### Home Page
+<img width="1920" height="1080" alt="Screenshot (155)" src="https://github.com/user-attachments/assets/c78acbd4-a279-4dbd-a20c-47839fd81a58" />
+### Search Results
+<img width="1920" height="1080" alt="Screenshot (156)" src="https://github.com/user-attachments/assets/0381e726-a0ea-49cc-a9a9-568a46295c79" />
+### Recommendations
+<img width="1920" height="1080" alt="Screenshot (157)" src="https://github.com/user-attachments/assets/83d59ef4-8632-449f-af5c-d78ce4273cec" />
 
-> Home page with animated movie poster background and search bar
 
-> Movie recommendations after clicking a title
-
----
 
 *Built with ❤️ using Python, React, and Machine Learning*
