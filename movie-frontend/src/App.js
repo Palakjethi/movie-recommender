@@ -211,7 +211,7 @@ function App() {
         {/* Popular Movies Page */}
         {activeNav === "popular" && (
           <section className="movie-section">
-            <h2>🔥 Now Playing</h2>
+            <h2> Now Playing</h2>
             <div className="movie-grid">
               {popular.map((m) => (
                 <MovieCard
@@ -227,7 +227,7 @@ function App() {
         {/* Upcoming Movies Page */}
         {activeNav === "upcoming" && (
           <section className="movie-section">
-            <h2>🚀 Upcoming Movies</h2>
+            <h2> Upcoming Movies</h2>
             <div className="movie-grid">
               {upcoming.map((m) => (
                 <MovieCard key={m.title} movie={m} />
