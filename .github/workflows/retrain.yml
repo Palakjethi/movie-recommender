@@ -1,0 +1,14 @@
+name: Monthly Model Retrain
+
+on:
+  schedule:
+    - cron: '0 0 1 * *'
+  workflow_dispatch:
+
+jobs:
+  retrain:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Render Redeploy
+        run: |
+          curl -X POST "${{ secrets.RENDER_DEPLOY_HOOK }}"
