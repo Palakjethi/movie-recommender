@@ -3,12 +3,14 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
 API_KEY = os.environ.get("TMDB_API_KEY")
+print(f"API Key loaded: {API_KEY[:5] if API_KEY else 'NOT FOUND'}") 
 BASE_URL = "https://api.themoviedb.org/3"
 
 def fetch_movies(category, pages=5):
     movies = []
     for page in range(1, pages + 1):
         r = requests.get(f"{BASE_URL}/movie/{category}?api_key={API_KEY}&page={page}")
+        print(f"TMDB response status: {r.status_code}")
         results = r.json().get("results", [])
         for m in results:
             m["category"] = category
