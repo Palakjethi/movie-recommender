@@ -59,10 +59,20 @@ for m in unique:
             "soup": f"{genres} {cast} {director} {keywords}",
             "category": m.get("category", "")
         })
-    except:
+    except Exception as e:
+        print(f"❌ Failed for movie {m['id']}: {e}")
         continue
 
-df = pd.DataFrame(rows).drop_duplicates("title").reset_index(drop=True)
+print(f"Total rows fetched: {len(rows)}")  # ✅ rows exists here
+
+df = pd.DataFrame(rows).drop_duplicates("title").reset_index(drop=True)  # ✅ create df FIRST
+
+# ✅ NOW use df
+print(f"DataFrame shape: {df.shape}")
+print(f"Columns: {df.columns.tolist()}")
+if len(df) == 0:
+    raise Exception("No movies fetched! Check TMDB API key and responses.")
+
 df.to_csv("movies.csv", index=False)
 
 tfidf = TfidfVectorizer(stop_words="english")
